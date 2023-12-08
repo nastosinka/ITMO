@@ -4,7 +4,7 @@
 
 yaml = []
 
-file1 = open('C://Users/osink/Downloads/lab3.yaml')
+file1 = open('lab3.yaml')
 s = file1.readlines()
 
 now = 0 #счётчик позиции курсора
