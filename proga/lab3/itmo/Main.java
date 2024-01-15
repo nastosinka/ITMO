@@ -5,11 +5,6 @@ import itmo.human.Malysh;
 import itmo.location.Location;
 import itmo.location.Surrounding;
 
-/*
-помогите
-Таски:
-17. урааа, работает
- */
 
 public class Main {
     static Malysh malysh = new Malysh("Малыш", 8, true, "ложечка", Location.ROOM);
@@ -36,16 +31,7 @@ public class Main {
         malysh.setLocation(Location.BALKON);
 
         System.out.println(surrounding.getSurrounding());
-        /*
-        arounding.addArounding(karlson, malysh);
-        System.out.println(arounding.getAroundingHuman("Малыш"));
-        karlson.setOnTheGround(false);
-        malysh.setLocation(itmo.location.Location.BALKON);
-        arounding.addArounding(karlson, malysh);
-        System.out.println(arounding.getAroundingHuman("Карлсон"));
-
-         */
-
+     
 
     }
 }
