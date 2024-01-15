@@ -6,7 +6,7 @@ public enum Location {
     Location(String location) {
         this.location = location;
     } // конструктор
-    @Override // переопределяем вывод локации, чтоб всё по-русски было
+    @Override 
     public String toString() {
         return location;
     }
