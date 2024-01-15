@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public abstract class Human implements Turnable {
     final String name;
-    private Location location; // создаём локацию зачем блин???
+    private Location location; 
     private int age;
     private boolean isOnLand;
     public Human(String name, int age, boolean isOnLand, Location location) {
@@ -57,27 +57,3 @@ public abstract class Human implements Turnable {
 
 
 
-
-    /*
-    final String locations;
-    public Arounding (String locations, boolean changing);
-        this.changing = changing;
-    }
-    @Override
-    public int hashCode() {
-        return getName().hashCode();
-    }
-    @Override
-    public boolean equals(Object obj) { //потому что все последующие классы наследуюься
-        if (this.getClass() != obj.getClass()) // применяется к текущему
-            return false; // возвращает значение
-        return obj.hashCode() == this.hashCode();
-    }
-    @Override
-    public String toString() {
-        return "Существо по имени " + getName();
-    }
-        };
-    }
-}
-*/
