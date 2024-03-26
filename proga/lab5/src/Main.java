@@ -1,9 +1,6 @@
 
-import java.util.LinkedList;
+import java.util.*;
 import java.io.*;
-import java.util.ListIterator;
-import java.util.Objects;
-import java.util.Scanner;
 
 
 import Exceptions.IncorrectCommand;
@@ -15,23 +12,23 @@ import Exceptions.NoFileName;
 Таски:
 
 1. Почитать про Comparable и ещё какую-то штуку - сортировка
-2. Нагенерить CSV
-3. Паттеры команд - команды через словарь и ключи реализовывать через хэшмап массив
 4. Написать интерфейс исполнения команды
-5.
+5. Написать проверку на корректность csv файла. Разделитель - "точка с запятой"
+6. сделать парсинг хумана (csv) в массив со строками, причём автоматически генерить айди (через
+итерацию), добавлять null объект
+7.
  */
 
 
-// через map переделать словарь с командами по индексам, через getkey
-// делить на пробелмы и получать массив строк /
+// done через map переделать словарь с командами по индексам, через getkey
+// done делить на пробелмы и получать массив строк /
 // хуман как база данных
-// можно использовать для истории очередь
 // запарсить csv в экземпляр класса humanbeing, сделать запрет на разделитель
 // можно проверить csv на парвильность: если всё ок, то весь сразу записывать
 // пкстая строка =  null обхект
 
 public class Main {
-    public static void main(String[] args) throws NoFileName, IOException, IncorrectCommand { //по первому индексу обратиться к названию файла
+    public static void main(String[] args) throws NoFileName, IOException { //по первому индексу обратиться к названию файла
 
         // эксепшн на неуказанное имя файла
         System.out.println();
@@ -45,35 +42,47 @@ public class Main {
         FileReader fr = new FileReader(currentFile);  // читаем файл в переменную fr
         PrintWriter pw = new PrintWriter(currentFile);   // открываем файл для записи
 
+        // разобраться, почему файл не читаеттся
+        // написать сортировку через comparable и сделать проверку csv на корректнрость
+        ArrayList<String> result = new ArrayList<>();
+        int i = 0;
+        while (i != -1) {
+            result.add(String.valueOf((char)i));
+            i = fr.read();
+        }
+        System.out.println(result);
+        System.out.println(2345);
+
         // что с помощью comparable сортировать?..
         String now = "";
-        LinkedList<String> commandLine = new LinkedList<String>(); // класс, коллекцией которого управляет программа
-        LinkedList<String> commandArray = new LinkedList<String>(); // список доступных команд
-        commandArray.add("help");
-        commandArray.add("add");
-        commandArray.add("clear");
-        commandArray.add("exit");
 
+        //работаем со словарём
+        HashMap<String, String> commandArray = new HashMap<>(); // список доступных команд
+        commandArray.put("add", "add");
+        commandArray.put("help", "help");
+        commandArray.put("clear", "clear");
+        commandArray.put("exit", "exit");
 
-        while ((!Objects.equals(now, "exit")) && (now != null) && (!now.equals(" "))) {
+        while ((!Objects.equals(now, "exit")) && (!now.equals(" "))) {
             Scanner in = new Scanner(System.in);
             System.out.print("Введите команду: ");
             String current = in.nextLine(); // читаем строку в current
-            commandLine.add(current);// добавили в "историю" введённую команду
+            String[] commandLine = current.split(" "); // разбиваем строку по разделителю
             now = current; // для проверки завершения команды
             // дообавить массив, который будет заполняться - каждый новый элемент - новая строка в консоли
             try {
-                ListIterator<String> itr = commandArray.listIterator(); // добавляем итератор
-                System.out.println(commandArray.size());
-                while (itr.hasNext()) {
-                    if (commandArray.contains(current)) {
-                        System.out.println("najdeno");
-                    } else {
-                        // изменить тип ошибки и выкидывать не рантайм, а try-catch
-                        throw new IncorrectCommand("Неверная команда. Попробуйте ещё раз.");
-                    }
+                if (commandArray.containsKey(commandLine[0])) { // проверка наличия в словаре
+                    System.out.println("najdeno");
+
+                    // прописать вызов команды в зависимости от ключа
+
+
+
+                } else {
+                    throw new IncorrectCommand("Неверная команда. Попробуйте ещё раз.");
                 }
-            } catch (IncorrectCommand e) {
+            }
+            catch (IncorrectCommand e) {
                     System.out.println(e.getMessage());
                 }
             }
