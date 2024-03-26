@@ -136,6 +136,8 @@ VALUES
     (2, 2, 5000, 4500, 1200),
     (1, 2, 5000, 4500, 1200);
 """
+
+
 # начинаются всякие выборы
 # через select
 execute_query(connection, create_money)
